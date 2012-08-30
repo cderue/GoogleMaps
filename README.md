@@ -1,4 +1,4 @@
 GoogleMaps
 ==========
 
-A Zend Framework module that provides a PHP wrapper to the Google Maps Geocoding API
+A Zend Framework 2 module that provides a PHP wrapper to the Google Maps Geocoding API
