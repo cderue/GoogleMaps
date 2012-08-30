@@ -127,8 +127,6 @@ class Geocoder
 			$resultSet->addElement($result);
 		}
 		$response->setResults($resultSet);
-		Debug::dump($response);
-		exit;
 		
 		return $response;
 	}
