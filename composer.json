@@ -1,0 +1,24 @@
+{
+    "name": "cderue/googlemaps",
+    "description": "A Zend Framework module that provides a PHP wrapper to the Google Maps Geocoding API",
+    "type": "module",
+    "keywords": [],
+    "homepage": "https://github.com/cderue/GoogleMaps",
+    "authors": [
+        {
+            "name": "CÈdric DERUE"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3.",
+        "zendframework/zendframework": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "GoogleMaps": "src/"
+        },
+        "classmap": [
+            "Module.php"
+        ]
+    }
+}
