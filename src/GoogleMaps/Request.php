@@ -70,6 +70,20 @@ class Request
 	protected $language;
 	
 	/**
+	 * ClientId for Google Maps for Business
+	 * 
+	 * @var string
+	 */
+	protected $client;
+	
+	/**
+	 * Signature for Google Maps for Business
+	 * 
+	 * @var string
+	 */
+	protected $signature;
+	
+	/**
 	 * Contructor
 	 * 
 	 * @param boolean $sensor
@@ -142,6 +156,38 @@ class Request
 	{
 		$this->language = $language;
 	}
+	
+	/**
+	 * @return string
+	 */
+	public function getClient()
+	{
+	    return $this->client;
+	}
+	
+	/**
+	 * @param string $clientId
+	 */
+	public function setClient($clientId)
+	{
+	    $this->client = $clientId;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getSignature()
+	{
+	    return $this->signature;
+	}
+	
+	/**
+	 * @param string $signature
+	 */
+	private function setSignature($signature)
+	{
+	    $this->signature = $signature;
+	}
 
 	/**
 	 * @return the $region
@@ -192,6 +238,43 @@ class Request
 	}
 	
 	/**
+	 * @param string $privateKey
+	 * 
+	 * @return string
+	 */
+	public function sign($privateKey)
+	{
+	    $url = implode('?', array(Geocoder::GOOGLE_GEOCODING_API_PATH, $this->getUrlParameters()));
+	    $decodePrivateKey = $this->base64DecodeUrlSafe($privateKey);
+	    
+	    $sign = hash_hmac("sha1", $url, $decodePrivateKey, true);
+	    $signature = $this->base64EncodeUrlSafe($sign);
+	    
+	    $this->setSignature($signature);
+	    return true;
+	}
+	
+	/**
+	 * @param string $value
+	 *
+	 * @return string
+	 */
+	private function base64EncodeUrlSafe($value)
+	{
+	    return str_replace(array('+', '/'), array('-', '_'), base64_encode($value));
+	}
+	
+	/**
+	 * @param string $value
+	 *
+	 * @return string
+	 */
+	private function base64DecodeUrlSafe($value)
+	{
+	    return base64_decode(str_replace(array('-', '_'), array('+', '/'), $value));
+	}
+	
+	/**
 	 * Tranform request to URL parameters
 	 *
 	 * @return NULL|string
@@ -199,7 +282,7 @@ class Request
 	public function getUrlParameters()
 	{
 		$requiredParameters = array('address', 'latlng', 'components', 'sensor');
-		$optionalParameters = array('bounds', 'language', 'region', 'components');
+		$optionalParameters = array('bounds', 'language', 'client', 'signature', 'region', 'components');
 	
 		$url = '';
 		foreach ($requiredParameters as $parameter) {
