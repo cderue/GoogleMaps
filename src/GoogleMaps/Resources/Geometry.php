@@ -20,10 +20,10 @@ class Geometry implements ArraySerializableInterface
 	const RANGE_INTERPOLATED = 'range_interpolated';
 	const ROOFTOP 			 = 'rooftop';
 	
-	protected $bounds;
-	protected $location;
-	protected $locationType;
-	protected $viewport;
+	protected $bounds = null;
+	protected $location = null;
+	protected $locationType = null;
+	protected $viewport = null;
 	
 	public function __construct(array $data)
 	{
@@ -92,11 +92,16 @@ class Geometry implements ArraySerializableInterface
 	 */
 	public function getArrayCopy() 
 	{
-		return array(
+		$return = array(
 			'location' => $this->location->getArrayCopy(),
 			'location_type' => $this->locationType,
 			'viewport' => $this->viewport->getArrayCopy(),
-			'bounds' => $this->bounds->getArrayCopy(),
-		);
+		); 
+
+		if($this->bounds !== null){
+			$return['bounds'] = $this->bounds->getArrayCopy();
+		}
+
+		return $return;
 	}
 }
