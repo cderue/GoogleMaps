@@ -21,9 +21,9 @@ class Geometry implements ArraySerializableInterface
 	const ROOFTOP 			 = 'rooftop';
 	
 	protected $bounds = null;
-	protected $location = null;
-	protected $locationType = null;
-	protected $viewport = null;
+	protected $location;
+	protected $locationType;
+	protected $viewport;
 	
 	public function __construct(array $data)
 	{
