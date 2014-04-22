@@ -212,7 +212,7 @@ class Request
 				if (is_object($requiredParam)) {
 					$requiredParam = $requiredParam->toString();
 				}
-				$url .= $parameter . '=' . urlencode($requiredParam);
+				$url .= $parameter . '=' . $requiredParam;
 			}
 		}
 		if ($url === '') {
@@ -226,7 +226,7 @@ class Request
 				if (is_object($optionParam)) {
 					$optionParam = $optionParam->toString();
 				}
-				$url .= '&' . $option . '=' . urlencode($optionParam);
+				$url .= '&' . $option . '=' . $optionParam;
 			}
 		}
 		return $url;
