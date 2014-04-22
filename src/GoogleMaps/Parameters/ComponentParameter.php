@@ -79,6 +79,6 @@ class ComponentParameter implements ParameterInterface
 	 */
 	public function toString()
 	{
-		return $this->key . '|' . $this->value;
+		return $this->key . ':' . $this->value;
 	}
 }
