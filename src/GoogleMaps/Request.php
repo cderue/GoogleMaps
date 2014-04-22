@@ -2,7 +2,7 @@
 /**
  * This file is part of Geoxygen
  *
- * (c) 2012 Cédric DERUE <cedric.derue@gmail.com>
+ * (c) 2012 Cï¿½dric DERUE <cedric.derue@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -199,7 +199,7 @@ class Request
 	public function getUrlParameters()
 	{
 		$requiredParameters = array('address', 'latlng', 'components', 'sensor');
-		$optionalParameters = array('bounds', 'language', 'region', 'components');
+		$optionalParameters = array('bounds', 'language', 'region');
 	
 		$url = '';
 		foreach ($requiredParameters as $parameter) {
@@ -212,7 +212,7 @@ class Request
 				if (is_object($requiredParam)) {
 					$requiredParam = $requiredParam->toString();
 				}
-				$url .= $parameter . '=' . urlencode($requiredParam);
+				$url .= $parameter . '=' . $requiredParam;
 			}
 		}
 		if ($url === '') {
@@ -226,7 +226,7 @@ class Request
 				if (is_object($optionParam)) {
 					$optionParam = $optionParam->toString();
 				}
-				$url .= '&' . $option . '=' . urlencode($optionParam);
+				$url .= '&' . $option . '=' . $optionParam;
 			}
 		}
 		return $url;

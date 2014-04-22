@@ -2,7 +2,7 @@
 /**
  * This file is part of Geoxygen
  *
- * (c) 2012 Cédric DERUE <cedric.derue@gmail.com>
+ * (c) 2012 Cï¿½dric DERUE <cedric.derue@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -27,8 +27,10 @@ class ComponentSetParameter extends GenericCollection implements ParameterInterf
 	 */
 	public function toString() 
 	{
-		$components = null;
+		$components = null;		
 		foreach ($this->collection as $element) {
+			if (isset($components))
+				$components .= '|';
 			$components .= $element->toString();
 		}
 		return $components;
