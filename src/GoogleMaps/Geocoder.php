@@ -82,7 +82,7 @@ class Geocoder
 	
 	public function setHttpClient(HttpClient $httpClient) 
 	{	
-		$this->httpClient = httpClient;
+		$this->httpClient = $httpClient;
 		return $this;
 	}
 	
