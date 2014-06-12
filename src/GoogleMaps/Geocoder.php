@@ -40,6 +40,10 @@ class Geocoder
 	 */
 	protected $httpClient;
 	
+	
+	
+	protected $language;
+
 	/**
 	 * 
 	 * @param string $format
@@ -57,6 +61,14 @@ class Geocoder
 		$this->format = $format;
 	}
 	
+	public function getLanguage() {
+		return $this->language;
+	}
+	public function setLanguage($language) {
+		$this->language = $language;
+		return $this;
+	}
+
 	/**
 	 * 
 	 * @return string
@@ -112,6 +124,9 @@ class Geocoder
 		$client = $this->getHttpClient();
 		$client->resetParameters();
 		$client->setUri($uri->toString());
+		if ($this->getLanguage())
+			$client->setHeaders(array('Accept-Language',$this->getLanguage()));
+
 		$stream = $client->send();
 		
 		$body = Json::decode($stream->getBody(), Json::TYPE_ARRAY);
