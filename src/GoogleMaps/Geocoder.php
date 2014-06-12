@@ -125,7 +125,7 @@ class Geocoder
 		$client->resetParameters();
 		$client->setUri($uri->toString());
 		if ($this->getLanguage())
-			$client->setHeaders(array('Accept-Language',$this->getLanguage()));
+			$client->setHeaders(array('Accept-Language'=>$this->getLanguage()));
 
 		$stream = $client->send();
 		
