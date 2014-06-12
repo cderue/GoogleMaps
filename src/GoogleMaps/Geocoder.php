@@ -93,6 +93,7 @@ class Geocoder
 			throw new Exception\InvalidArgumentException('request');
 		}
 		$uri = new Uri();
+		$uri->setScheme('http');
 		$uri->setHost(self::GOOGLE_MAPS_APIS_URL);
 		$uri->setPath(self::GOOGLE_GEOCODING_API_PATH);
 		
