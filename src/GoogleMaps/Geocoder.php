@@ -103,6 +103,7 @@ class Geocoder
 		
 		$uri->setQuery($urlParameters);
 		$client = $this->getHttpClient();
+		$client->setAdapter('Zend\Http\Client\Adapter\Curl');
 		$client->resetParameters();
 		$uri->setScheme("https");
 		$client->setUri($uri->toString());
