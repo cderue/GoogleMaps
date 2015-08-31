@@ -1,5 +1,5 @@
 {
-    "name": "cderue/googlemaps",
+    "name": "shinesoftware/googlemaps",
     "description": "A Zend Framework module that provides a PHP wrapper to the Google Maps Geocoding API",
     "type": "module",
     "keywords": [],
