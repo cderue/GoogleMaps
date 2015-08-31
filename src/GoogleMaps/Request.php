@@ -2,7 +2,7 @@
 /**
  * This file is part of Geoxygen
  *
- * (c) 2012 Cédric DERUE <cedric.derue@gmail.com>
+ * (c) 2012 Cdric DERUE <cedric.derue@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -82,6 +82,13 @@ class Request
 	 * @var string
 	 */
 	protected $signature;
+
+	/**
+	 * Key for Google Maps for Business
+	 *
+	 * @var string
+	 */
+	protected $key;
 	
 	/**
 	 * Contructor
@@ -190,6 +197,22 @@ class Request
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getKey()
+	{
+		return $this->key;
+	}
+
+	/**
+	 * @param string $key
+	 */
+	public function setKey($key)
+	{
+		$this->key = $key;
+	}
+
+	/**
 	 * @return the $region
 	 */
 	public function getRegion() 
@@ -246,8 +269,8 @@ class Request
 	{
 	    $url = implode('?', array(Geocoder::GOOGLE_GEOCODING_API_PATH, $this->getUrlParameters()));
 	    $decodePrivateKey = $this->base64DecodeUrlSafe($privateKey);
-	    
-	    $sign = hash_hmac("sha1", $url, $decodePrivateKey, true);
+
+		$sign = hash_hmac("sha1", $url, $decodePrivateKey, true);
 	    $signature = $this->base64EncodeUrlSafe($sign);
 	    
 	    $this->setSignature($signature);
@@ -282,7 +305,7 @@ class Request
 	public function getUrlParameters()
 	{
 		$requiredParameters = array('address', 'latlng', 'components', 'sensor');
-		$optionalParameters = array('bounds', 'language', 'client', 'signature', 'region', 'components');
+		$optionalParameters = array('bounds', 'language', 'client', 'signature', 'region', 'components','key');
 	
 		$url = '';
 		foreach ($requiredParameters as $parameter) {
@@ -312,6 +335,7 @@ class Request
 				$url .= '&' . $option . '=' . urlencode($optionParam);
 			}
 		}
+
 		return $url;
 	}
 }
