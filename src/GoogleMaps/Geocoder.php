@@ -2,7 +2,7 @@
 /**
  * This file is part of Geoxygen
  *
- * (c) 2012 Cédric DERUE <cedric.derue@gmail.com>
+ * (c) 2012 Cdric DERUE <cedric.derue@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -104,9 +104,11 @@ class Geocoder
 		$uri->setQuery($urlParameters);
 		$client = $this->getHttpClient();
 		$client->resetParameters();
+		$uri->setScheme("https");
 		$client->setUri($uri->toString());
+
 		$stream = $client->send();
-		
+
 		$body = Json::decode($stream->getBody(), Json::TYPE_ARRAY);
 		$hydrator = new ArraySerializable();
 		
@@ -127,7 +129,7 @@ class Geocoder
 			$resultSet->addElement($result);
 		}
 		$response->setResults($resultSet);
-		
+
 		return $response;
 	}
 }
