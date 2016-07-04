@@ -2,7 +2,7 @@
 /**
  * This file is part of Geoxygen
  *
- * (c) 2012 Cédric DERUE <cedric.derue@gmail.com>
+ * (c) 2012 CÃ©dric DERUE <cedric.derue@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -10,13 +10,9 @@
 namespace GoogleMaps;
 
 use Zend\Stdlib\Hydrator\ArraySerializable;
-
 use Zend\Debug;
-
 use Zend\Json\Json;
-
 use Zend\Http\Client as HttpClient;
-
 use Zend\Uri\Uri;
 
 class Geocoder 
@@ -74,8 +70,9 @@ class Geocoder
 	public function getHttpClient() 
 	{
 		if (empty($this->httpClient)) {
-            $this->httpClient = new HttpClient();
-        }
+			$this->httpClient = new HttpClient();
+			$this->httpClient->setAdapter('Zend\Http\Client\Adapter\Curl');
+        	}
         return $this->httpClient;
 	}
 	
@@ -93,6 +90,7 @@ class Geocoder
 			throw new Exception\InvalidArgumentException('request');
 		}
 		$uri = new Uri();
+		$uri->setScheme('https');
 		$uri->setHost(self::GOOGLE_MAPS_APIS_URL);
 		$uri->setPath(self::GOOGLE_GEOCODING_API_PATH);
 		
