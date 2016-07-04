@@ -2,7 +2,7 @@
 /**
  * This file is part of Geoxygen
  *
- * (c) 2012 Cédric DERUE <cedric.derue@gmail.com>
+ * (c) 2012 CÃ©dric DERUE <cedric.derue@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -10,9 +10,7 @@
 namespace GoogleMaps;
 
 use GoogleMaps\Parameters\ComponentSetParameter;
-
 use GoogleMaps\Parameters\LatLngBoundsParameter;
-
 use GoogleMaps\Parameters\LatLngParameter;
 
 class Request
@@ -82,6 +80,13 @@ class Request
 	 * @var string
 	 */
 	protected $signature;
+	
+	/**
+	 * Key for Google Maps
+	 * 
+	 * @var string
+	 */
+	protected $key;
 	
 	/**
 	 * Contructor
@@ -238,6 +243,14 @@ class Request
 	}
 	
 	/**
+	 * @return string $key
+	 */
+	public function getKey() 
+	{
+		return $this->key;
+	}
+	
+	/**
 	 * @param string $privateKey
 	 * 
 	 * @return string
@@ -282,7 +295,7 @@ class Request
 	public function getUrlParameters()
 	{
 		$requiredParameters = array('address', 'latlng', 'components', 'sensor');
-		$optionalParameters = array('bounds', 'language', 'client', 'signature', 'region', 'components');
+		$optionalParameters = array('bounds', 'language', 'client', 'signature', 'region', 'components', 'key');
 	
 		$url = '';
 		foreach ($requiredParameters as $parameter) {
